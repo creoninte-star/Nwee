@@ -17,6 +17,7 @@ export default function Services() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const activeService = services.find(s => s.id === selectedService);
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -24,23 +25,29 @@ export default function Services() {
     offset: ["start start", "end end"]
   });
 
-function ServiceCard({ service, i, scrollYProgress, setSelectedService }: any) {
+function ServiceCard({ service, i, scrollYProgress, setSelectedService, isMobile }: any) {
   const Icon = service.icon;
 
   // Phase 1: Exploded view coordinates (vw/vh for responsiveness)
-  const explodeX = ["-35vw", "35vw", "-35vw", "35vw", "0vw"][i];
-  const explodeY = ["-25vh", "-25vh", "25vh", "25vh", "35vh"][i];
+  const explodeX = isMobile 
+    ? ["-10vw", "10vw", "-15vw", "15vw", "0vw"][i]
+    : ["-35vw", "35vw", "-35vw", "35vw", "0vw"][i];
+    
+  const explodeY = isMobile
+    ? ["-30vh", "-15vh", "15vh", "30vh", "0vh"][i]
+    : ["-25vh", "-25vh", "25vh", "25vh", "35vh"][i];
+    
   const explodeR = [-15, 15, 10, -10, 5][i];
 
-  // Phase 2: Locked fan coordinates
-  const fanX = `${(i - 2) * 50}px`;
-  const fanY = `${Math.abs(i - 2) * 15}px`;
-  const fanR = (i - 2) * 8;
+  // Phase 2: Locked fan coordinates (Horizontal fan for desktop, Vertical stack for mobile)
+  const fanX = isMobile ? `${(i - 2) * 8}px` : `${(i - 2) * 50}px`;
+  const fanY = isMobile ? `${(i - 2) * 65}px` : `${Math.abs(i - 2) * 15}px`;
+  const fanR = isMobile ? (i - 2) * 4 : (i - 2) * 8;
 
   const x = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vw", "0vw", explodeX, explodeX, fanX, fanX]);
   const y = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vh", "0vh", explodeY, explodeY, fanY, fanY]);
   const rotate = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], [0, 0, explodeR, explodeR, fanR, fanR]);
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], [0.5, 0.5, 1, 1, 1, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], isMobile ? [0.5, 0.5, 0.85, 0.85, 0.85, 0.85] : [0.5, 0.5, 1, 1, 1, 1]);
   const opacity = useTransform(scrollYProgress, [0, 0.15, 0.3, 0.65, 0.85, 1], [0, 0, 1, 1, 1, 1]);
   
   // As they lock into the fan, stack them nicely
@@ -73,7 +80,7 @@ function ServiceCard({ service, i, scrollYProgress, setSelectedService }: any) {
 
   // Central Core Mockup Transforms
   const coreScale = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.85, 1], [0.8, 1, 1, 1, 0.8, 0.8]);
-  const coreOpacity = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.8, 1], [0, 1, 1, 1, 0, 0]);
+  const coreOpacity = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.8, 1], isMobile ? [0, 1, 0.5, 0, 0, 0] : [0, 1, 1, 1, 0, 0]);
   const coreY = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.85, 1], ["50px", "0px", "0px", "0px", "-50px", "-50px"]);
 
   // Scroll Hint Text
@@ -81,6 +88,10 @@ function ServiceCard({ service, i, scrollYProgress, setSelectedService }: any) {
 
   useEffect(() => {
     setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // Check on mount
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   useEffect(() => {
@@ -159,11 +170,12 @@ function ServiceCard({ service, i, scrollYProgress, setSelectedService }: any) {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {services.map((service, i) => (
             <ServiceCard 
-              key={service.id} 
+              key={`${service.id}-${isMobile}`} 
               service={service} 
               i={i} 
               scrollYProgress={scrollYProgress} 
               setSelectedService={setSelectedService} 
+              isMobile={isMobile}
             />
           ))}
         </div>
