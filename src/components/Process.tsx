@@ -17,8 +17,8 @@ const circleVariants: Variants = {
     opacity: 0
   },
   visible: (i: number) => ({
-    borderColor: "rgba(43, 76, 126, 0.8)",
-    boxShadow: "0 0 40px rgba(43, 76, 126, 0.3)",
+    borderColor: "rgba(43, 76, 126, 1)",
+    boxShadow: "0 0 50px rgba(43, 76, 126, 0.6)",
     y: 0,
     opacity: 1,
     transition: {
@@ -122,7 +122,7 @@ export default function Process() {
                 <motion.div 
                   variants={circleVariants}
                   custom={i}
-                  className="w-32 h-32 md:w-36 md:h-36 mx-auto bg-white/[0.03] backdrop-blur-xl rounded-full border flex flex-col items-center justify-center mb-10 relative z-20"
+                  className="w-32 h-32 md:w-36 md:h-36 mx-auto bg-white rounded-full border flex flex-col items-center justify-center mb-10 relative z-20"
                 >
                   <motion.span 
                     variants={numVariants}
@@ -133,7 +133,7 @@ export default function Process() {
                   </motion.span>
                   
                   {/* Subtle inner glow */}
-                  <div className="absolute inset-0 rounded-full bg-navy-light/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_20px_rgba(43,76,126,0.2)]" />
+                  <div className="absolute inset-0 rounded-full bg-navy-light/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_30px_rgba(43,76,126,0.3)]" />
                 </motion.div>
 
                 <motion.div variants={textVariants} custom={i}>
