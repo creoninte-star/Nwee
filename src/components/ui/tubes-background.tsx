@@ -37,9 +37,10 @@ export function TubesBackground({
 
       try {
         // Dynamically import the threejs-components tubes cursor
-        // @ts-ignore
-        const module = await import('https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js');
-        const TubesCursor = module.default;
+        // We use Function to hide the import from Webpack and prevent build errors on Vercel
+        const loadModule = new Function("return import('https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js')");
+        const threejsModule = await loadModule();
+        const TubesCursor = threejsModule.default;
 
         if (!mounted) return;
 
