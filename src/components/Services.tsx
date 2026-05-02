@@ -33,6 +33,55 @@ export default function Services() {
 
   return (
     <section id="services" className="py-32 bg-background relative z-10 overflow-hidden">
+      {/* ── Background Aesthetic Elements ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Huge Parallax Background Text */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 0.035 }}
+          transition={{ duration: 1.5 }}
+          className="absolute -top-10 left-1/2 -translate-x-1/2 select-none"
+        >
+          <h2 className="text-[25rem] font-display font-black tracking-tighter text-white leading-none">
+            SERVICES
+          </h2>
+        </motion.div>
+
+        {/* Dynamic Glow Blobs */}
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.15, 0.1],
+            x: [0, 50, 0],
+            y: [0, 30, 0]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-gold/20 rounded-full blur-[120px]"
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.05, 0.1, 0.05],
+            x: [0, -40, 0],
+            y: [0, -60, 0]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-0 -right-20 w-[600px] h-[600px] bg-gold/10 rounded-full blur-[150px]"
+        />
+
+        {/* Technical Dot Grid */}
+        <div 
+          className="absolute inset-0 opacity-[0.15]" 
+          style={{ 
+            backgroundImage: "radial-gradient(circle, #D4AF37 1px, transparent 1px)", 
+            backgroundSize: "60px 60px" 
+          }}
+        />
+        
+        {/* Subtle Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+      </div>
+
       <div className="container mx-auto px-6 md:px-12">
         <motion.div
           className="mb-20"
