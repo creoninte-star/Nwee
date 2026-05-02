@@ -17,8 +17,8 @@ const circleVariants: Variants = {
     opacity: 0
   },
   visible: (i: number) => ({
-    borderColor: "rgba(10, 35, 66, 0.5)",
-    boxShadow: "0 0 30px rgba(10, 35, 66, 0.15)",
+    borderColor: "rgba(43, 76, 126, 0.8)",
+    boxShadow: "0 0 40px rgba(43, 76, 126, 0.3)",
     y: 0,
     opacity: 1,
     transition: {
@@ -108,12 +108,12 @@ export default function Process() {
                     <motion.div 
                       variants={lineVariants}
                       custom={i}
-                      className="hidden md:block absolute top-[4.5rem] left-1/2 w-full h-[2px] bg-navy origin-left z-0"
+                      className="hidden md:block absolute top-[4.5rem] left-1/2 w-full h-[2px] bg-gradient-to-r from-navy to-navy-light origin-left z-0"
                     ></motion.div>
                     <motion.div 
                       variants={lineVariants}
                       custom={i}
-                      className="md:hidden absolute left-1/2 top-32 w-[2px] h-[calc(100%+1rem)] bg-navy origin-top -translate-x-1/2 z-0"
+                      className="md:hidden absolute left-1/2 top-32 w-[2px] h-[calc(100%+1rem)] bg-gradient-to-b from-navy to-navy-light origin-top -translate-x-1/2 z-0"
                     ></motion.div>
                   </>
                 )}
@@ -133,7 +133,7 @@ export default function Process() {
                   </motion.span>
                   
                   {/* Subtle inner glow */}
-                  <div className="absolute inset-0 rounded-full bg-navy/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 rounded-full bg-navy-light/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_20px_rgba(43,76,126,0.2)]" />
                 </motion.div>
 
                 <motion.div variants={textVariants} custom={i}>
