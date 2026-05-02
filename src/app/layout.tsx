@@ -11,7 +11,7 @@ const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotes
 const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400", variable: "--font-bebas" });
 
 export const metadata: Metadata = {
-  title: "CREON | Born Creative. Built to Scale.",
+  title: "Nwee | Born Creative. Built to Scale.",
   description: "We build brands, websites, and experiences that make people stop scrolling.",
 };
 

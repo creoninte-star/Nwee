@@ -55,7 +55,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
               exit={{ y: "-100%" }}
               transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
             />
-            {/* CREON wordmark center */}
+            {/* NWEE wordmark center */}
             <motion.div
               key="curtain-logo"
               className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none"
@@ -73,7 +73,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
                   backgroundClip: "text",
                 }}
               >
-                CREON
+                NWEE
               </span>
             </motion.div>
           </>

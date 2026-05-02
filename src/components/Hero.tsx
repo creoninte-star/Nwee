@@ -92,11 +92,11 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* CREON wordmark */}
+        {/* Nwee wordmark */}
         <div className="overflow-hidden mb-6">
           <motion.h1
             variants={wordVariants}
-            className="text-[5.5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] xl:text-[13rem] font-gondens font-black tracking-[-0.01em] leading-none"
+            className="text-[5.5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] xl:text-[13rem] font-display font-black tracking-[-0.01em] leading-none"
             style={{
               background:
                 "linear-gradient(160deg, #F5E6A0 0%, #D4AF37 40%, #A07C18 75%, #6B5010 100%)",
@@ -106,7 +106,7 @@ export default function Hero() {
               filter: "drop-shadow(0 0 60px rgba(212,175,55,0.12))",
             }}
           >
-            CREON
+            NWEE
           </motion.h1>
         </div>
 
@@ -115,7 +115,7 @@ export default function Hero() {
           variants={fadeVariants}
           className="text-sm md:text-base text-white/50 max-w-lg font-sans tracking-[0.18em] font-light mb-14 uppercase"
         >
-          CREativity ONset. Born Creative. Built to Scale.
+          Born Creative. Built to Scale.
         </motion.p>
 
         {/* CTAs — Premium Liquid Glass style */}
@@ -139,7 +139,7 @@ export default function Hero() {
 
           {/* Secondary — Liquid Glass Silver/White */}
           <LiquidButton
-            onClick={() => window.open("https://shop.creon.agency", "_blank")}
+            onClick={() => window.open("https://shop.nwee.agency", "_blank")}
             className="px-12 py-5"
           >
             <span className="font-sans font-bold tracking-[0.2em] uppercase text-sm text-white/80">Visit Store</span>

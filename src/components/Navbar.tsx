@@ -10,7 +10,7 @@ const navLinks = [
   { name: "Services", href: "#services" },
   { name: "Process", href: "#process" },
   { name: "Work", href: "#work" },
-  { name: "Store", href: "https://shop.creon.agency" },
+  { name: "Store", href: "https://shop.nwee.agency" },
 ];
 
 const navVariants: Variants = {
@@ -93,7 +93,7 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
           <Link href="/" className="text-xl font-sans font-bold tracking-widest text-gold uppercase">
-            CREON
+            NWEE
           </Link>
 
           <div className="hidden md:flex items-center gap-10">

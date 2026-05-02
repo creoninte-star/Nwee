@@ -49,10 +49,10 @@ export default function Footer() {
             </div>
             <motion.a
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}
-              href="mailto:hello@creon.agency"
+              href="mailto:hello@nwee.agency"
               className="text-xl md:text-2xl font-sans text-text-muted hover:text-gold transition-colors border-b border-transparent hover:border-gold pb-2 flex items-center gap-2 w-max"
             >
-              hello@creon.agency <ArrowUpRight size={24} />
+              hello@nwee.agency <ArrowUpRight size={24} />
             </motion.a>
           </motion.div>
           <div className="flex gap-6">
@@ -74,7 +74,7 @@ export default function Footer() {
 
         <div className="border-t border-secondary pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-text-muted text-sm font-sans uppercase tracking-widest">
-            © 2026 CREON. All rights reserved.
+            © 2026 NWEE. All rights reserved.
           </p>
           <div className="flex gap-8">
             <a href="#" className="text-text-muted hover:text-text text-sm font-sans uppercase tracking-widest transition-colors">Privacy</a>
