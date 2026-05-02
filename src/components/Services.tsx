@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import { PenTool, Code, Video, Palette, Megaphone, X } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform, Variants } from "framer-motion";
+import { PenTool, Code, Video, Palette, Megaphone, X, Diamond } from "lucide-react";
 
 const services = [
   { id: "brand", title: "Brand Identity", desc: "Crafting unforgettable brand stories.", icon: PenTool },
@@ -13,25 +13,48 @@ const services = [
   { id: "social", title: "Ad & Social Branding", desc: "Thumb-stopping social content.", icon: Megaphone },
 ];
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as const }
-  })
-};
-
-const modalVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.4 } },
-  exit: { opacity: 0 }
-};
-
 export default function Services() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const activeService = services.find(s => s.id === selectedService);
   const [mounted, setMounted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Calculate dynamic transforms for each card based on scroll progress
+  const getCardTransforms = (i: number) => {
+    // Phase 1: Exploded view coordinates (vw/vh for responsiveness)
+    const explodeX = ["-35vw", "35vw", "-35vw", "35vw", "0vw"][i];
+    const explodeY = ["-25vh", "-25vh", "25vh", "25vh", "35vh"][i];
+    const explodeR = [-15, 15, 10, -10, 5][i];
+
+    // Phase 2: Locked fan coordinates
+    const fanX = `${(i - 2) * 50}px`;
+    const fanY = `${Math.abs(i - 2) * 15}px`;
+    const fanR = (i - 2) * 8;
+
+    const x = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vw", "0vw", explodeX, explodeX, fanX, fanX]);
+    const y = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vh", "0vh", explodeY, explodeY, fanY, fanY]);
+    const rotate = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], [0, 0, explodeR, explodeR, fanR, fanR]);
+    const scale = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], [0.5, 0.5, 1, 1, 1, 1]);
+    const opacity = useTransform(scrollYProgress, [0, 0.15, 0.3, 0.65, 0.85, 1], [0, 0, 1, 1, 1, 1]);
+    
+    // As they lock into the fan, stack them nicely
+    const zIndex = 10 + i;
+
+    return { x, y, rotate, scale, opacity, zIndex };
+  };
+
+  // Central Core Mockup Transforms
+  const coreScale = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.85, 1], [0.8, 1, 1, 1, 0.8, 0.8]);
+  const coreOpacity = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.8, 1], [0, 1, 1, 1, 0, 0]);
+  const coreY = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.85, 1], ["50px", "0px", "0px", "0px", "-50px", "-50px"]);
+
+  // Scroll Hint Text
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.1, 0.3, 0.8, 0.9, 1], [0, 1, 0, 0, 1, 1]);
 
   useEffect(() => {
     setMounted(true);
@@ -53,110 +76,96 @@ export default function Services() {
   }, [selectedService]);
 
   return (
-    <section id="services" className="py-32 bg-background relative z-10 overflow-hidden">
-      {/* ── Background Aesthetic Elements ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Huge Parallax Background Text */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.035 }}
-          transition={{ duration: 1.5 }}
-          className="absolute -top-10 left-1/2 -translate-x-1/2 select-none"
-        >
-          <h2 className="text-[25rem] font-display font-black tracking-tighter text-white leading-none">
-            SERVICES
-          </h2>
-        </motion.div>
-
-        {/* Dynamic Glow Blobs */}
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.15, 0.25, 0.15],
-            x: [0, 50, 0],
-            y: [0, 30, 0]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-gold/20 rounded-full blur-[120px]"
-        />
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.3, 1],
-            opacity: [0.1, 0.2, 0.1],
-            x: [0, -40, 0],
-            y: [0, -60, 0]
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute bottom-10 -right-20 w-[700px] h-[700px] bg-teal/20 rounded-full blur-[150px]"
-        />
-
-        {/* Technical Dot Grid */}
-        <div 
-          className="absolute inset-0 opacity-[0.15]" 
-          style={{ 
-            backgroundImage: "radial-gradient(circle, #D4AF37 1px, transparent 1px)", 
-            backgroundSize: "60px 60px" 
-          }}
-        />
+    <section ref={containerRef} id="services" className="h-[400vh] bg-background relative z-10">
+      
+      {/* Sticky container that holds the scene */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center">
         
-        {/* Subtle Vignette Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
-      </div>
+        {/* Background Aesthetic Elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.035 }}
+            transition={{ duration: 1.5 }}
+            className="absolute top-0 left-1/2 -translate-x-1/2 select-none"
+          >
+            <h2 className="text-[25rem] font-display font-black tracking-tighter text-white leading-none">
+              SERVICES
+            </h2>
+          </motion.div>
 
-      <div className="container mx-auto px-6 md:px-12">
-        <motion.div
-          className="mb-20"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.15 } } }}
-        >
-          <div className="overflow-hidden">
-            <motion.h2
-              variants={{ hidden: { y: "100%", opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const } } }}
-              className="text-5xl md:text-7xl font-display font-black tracking-tight mb-6"
-              style={{
-                background: "linear-gradient(160deg, #FFFFFF 0%, #F5E6A0 40%, #D4AF37 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Services
-            </motion.h2>
-          </div>
-          <motion.div
-            variants={{ hidden: { width: 0 }, visible: { width: 64, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const } } }}
-            className="h-[2px] bg-gold"
+          {/* Dynamic Glow Blobs */}
+          <motion.div 
+            animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15], x: [0, 50, 0], y: [0, 30, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-gold/20 rounded-full blur-[120px]"
           />
+          <motion.div 
+            animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.2, 0.1], x: [0, -40, 0], y: [0, -60, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-10 -right-20 w-[700px] h-[700px] bg-teal/20 rounded-full blur-[150px]"
+          />
+
+          <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: "radial-gradient(circle, #D4AF37 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+        </div>
+
+        {/* Central Core Mockup */}
+        <motion.div 
+          style={{ scale: coreScale, opacity: coreOpacity, y: coreY }}
+          className="absolute z-20 flex flex-col items-center justify-center pointer-events-none"
+        >
+          <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border border-gold/30 bg-black/40 backdrop-blur-xl flex items-center justify-center shadow-[0_0_60px_rgba(212,175,55,0.15)]">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gold/20 to-transparent blur-md"></div>
+            <div className="absolute inset-2 rounded-full border border-white/10 border-dashed animate-[spin_20s_linear_infinite]"></div>
+            <Diamond size={64} className="text-gold animate-pulse" strokeWidth={1} />
+          </div>
+          <h3 className="mt-8 text-2xl md:text-3xl font-display font-bold uppercase tracking-widest text-white">Nwee Core</h3>
+          <p className="mt-2 text-gold/70 text-sm font-sans tracking-widest uppercase">Ecosystem</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Scroll Hints */}
+        <motion.div 
+          style={{ opacity: hintOpacity }}
+          className="absolute bottom-12 text-white/40 text-[10px] uppercase tracking-[0.3em] font-sans pointer-events-none"
+        >
+          <span className="block animate-pulse text-center">Scroll to explore</span>
+        </motion.div>
+
+        {/* Exploding Service Cards */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {services.map((service, i) => {
             const Icon = service.icon;
+            const transforms = getCardTransforms(i);
+
             return (
               <motion.div
                 key={service.id}
-                custom={i}
-                variants={cardVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.2 }}
+                style={{
+                  x: transforms.x,
+                  y: transforms.y,
+                  rotate: transforms.rotate,
+                  scale: transforms.scale,
+                  opacity: transforms.opacity,
+                  zIndex: transforms.zIndex,
+                }}
                 onClick={() => setSelectedService(service.id)}
-                className="relative bg-white/[0.01] backdrop-blur-lg cursor-pointer border border-white/[0.04] rounded-3xl px-8 py-12 flex flex-col justify-between group hover:bg-white/[0.02] transition-all duration-700 overflow-hidden shadow-2xl"
-                whileHover={{ scale: 1.03, y: -8 }}
+                className="absolute w-[280px] sm:w-[320px] bg-[#0c0c0c]/80 backdrop-blur-2xl cursor-pointer border border-white/[0.08] rounded-3xl p-8 flex flex-col group hover:bg-[#111] transition-colors duration-500 overflow-hidden shadow-2xl pointer-events-auto"
+                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
               >
                 {/* Premium subtle inner gradient glow & border highlights */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                 <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                <div className="text-text/70 group-hover:text-gold transition-colors duration-500 mb-12 relative z-10">
-                  <Icon size={44} strokeWidth={1.5} />
+                <div className="text-text/70 group-hover:text-gold transition-colors duration-500 mb-8 relative z-10 flex justify-center">
+                  <div className="p-4 rounded-full bg-white/5 group-hover:bg-gold/10 transition-colors duration-500">
+                    <Icon size={40} strokeWidth={1.5} />
+                  </div>
                 </div>
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-sans font-medium tracking-wide text-text mb-4 uppercase group-hover:translate-x-1 transition-transform duration-300">{service.title}</h3>
-                  <p className="text-text-muted font-sans text-sm leading-relaxed group-hover:text-white/80 transition-colors duration-300">{service.desc}</p>
+                <div className="relative z-10 text-center">
+                  <h3 className="text-xl font-sans font-medium tracking-wide text-white mb-3 uppercase group-hover:scale-105 transition-transform duration-300">{service.title}</h3>
+                  <p className="text-text-muted font-sans text-xs leading-relaxed group-hover:text-white/80 transition-colors duration-300">{service.desc}</p>
                 </div>
               </motion.div>
             );
@@ -164,6 +173,7 @@ export default function Services() {
         </div>
       </div>
 
+      {/* Modal rendered via Portal */}
       {mounted && createPortal(
         <AnimatePresence>
           {selectedService && (
@@ -243,5 +253,3 @@ export default function Services() {
     </section>
   );
 }
-
-
