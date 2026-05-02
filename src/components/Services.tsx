@@ -39,15 +39,21 @@ function ServiceCard({ service, i, scrollYProgress, setSelectedService, isMobile
     
   const explodeR = [-15, 15, 10, -10, 5][i];
 
-  // Phase 2: Locked fan coordinates (Horizontal fan for desktop, Vertical stack for mobile)
-  const fanX = isMobile ? `${(i - 2) * 8}px` : `${(i - 2) * 50}px`;
-  const fanY = isMobile ? `${(i - 2) * 65}px` : `${Math.abs(i - 2) * 15}px`;
-  const fanR = isMobile ? (i - 2) * 4 : (i - 2) * 8;
+  // Phase 2: Readable Grid coordinates (Nere Nere layout)
+  const gridX = isMobile 
+    ? "0vw" 
+    : ["-20vw", "20vw", "0vw", "-20vw", "20vw"][i];
+    
+  const gridY = isMobile 
+    ? ["-35vh", "-17.5vh", "0vh", "17.5vh", "35vh"][i] 
+    : ["-25vh", "-25vh", "0vh", "25vh", "25vh"][i];
+    
+  const gridR = 0; // No rotation in final readable state
 
-  const x = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vw", "0vw", explodeX, explodeX, fanX, fanX]);
-  const y = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vh", "0vh", explodeY, explodeY, fanY, fanY]);
-  const rotate = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], [0, 0, explodeR, explodeR, fanR, fanR]);
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], isMobile ? [0.5, 0.5, 0.85, 0.85, 0.85, 0.85] : [0.5, 0.5, 1, 1, 1, 1]);
+  const x = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vw", "0vw", explodeX, explodeX, gridX, gridX]);
+  const y = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vh", "0vh", explodeY, explodeY, gridY, gridY]);
+  const rotate = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], [0, 0, explodeR, explodeR, gridR, gridR]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], isMobile ? [0, 0, 0.85, 0.85, 0.7, 0.7] : [0, 0, 1, 1, 1, 1]);
   const opacity = useTransform(scrollYProgress, [0, 0.15, 0.3, 0.65, 0.85, 1], [0, 0, 1, 1, 1, 1]);
   
   // As they lock into the fan, stack them nicely
@@ -57,11 +63,11 @@ function ServiceCard({ service, i, scrollYProgress, setSelectedService, isMobile
     <motion.div
       style={{ x, y, rotate, scale, opacity, zIndex }}
       onClick={() => setSelectedService(service.id)}
-      className="absolute w-[280px] sm:w-[320px] bg-[#0c0c0c]/80 backdrop-blur-2xl cursor-pointer border border-white/[0.08] rounded-3xl p-8 flex flex-col group hover:bg-[#111] transition-colors duration-500 overflow-hidden shadow-2xl pointer-events-auto"
+      className="absolute w-[280px] sm:w-[320px] bg-gradient-to-b from-[#1a1708]/90 to-[#0c0c0c]/90 backdrop-blur-2xl cursor-pointer border border-gold/40 rounded-3xl p-8 flex flex-col group hover:from-[#26200a]/90 hover:to-[#111]/90 hover:border-gold/60 transition-all duration-500 overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.15)] pointer-events-auto"
       whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
     >
       {/* Premium subtle inner gradient glow & border highlights */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gold/20 via-transparent to-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
