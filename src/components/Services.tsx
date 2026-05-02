@@ -86,7 +86,7 @@ function ServiceCard({ service, i, scrollYProgress, setSelectedService, isMobile
 
   // Central Core Mockup Transforms
   const coreScale = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.85, 1], [0.8, 1, 1, 1, 0.8, 0.8]);
-  const coreOpacity = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.85, 1], isMobile ? [0, 1, 0.5, 0, 0, 0] : [0, 1, 1, 0.5, 0, 0]);
+  const coreOpacity = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.55, 0.85, 1], [0, 1, 1, 0, 0, 0]);
   const coreY = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.85, 1], ["50px", "0px", "0px", "0px", "-50px", "-50px"]);
 
   // Scroll Hint Text
