@@ -3,7 +3,8 @@
 import { motion, Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
-import AnimatedShaderBackground from "@/components/ui/animated-shader-hero";
+import { TubesBackground } from "@/components/ui/tubes-background";
+import { MousePointer2 } from "lucide-react";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -49,8 +50,8 @@ export default function Hero() {
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
 
-      {/* ── WebGL nebula shader background ── */}
-      <AnimatedShaderBackground />
+      {/* ── WebGL tubes interactive background ── */}
+      <TubesBackground />
 
       {/* ── Subtle horizontal light streak at center ── */}
       <div
@@ -65,7 +66,7 @@ export default function Hero() {
 
       {/* ── Hero content ── */}
       <motion.div
-        className="relative z-10 flex flex-col items-center text-center px-6 container mx-auto"
+        className="relative z-10 flex flex-col items-center text-center px-6 container mx-auto pointer-events-none"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -121,7 +122,7 @@ export default function Hero() {
         {/* CTAs — Premium Liquid Glass style */}
         <motion.div
           variants={fadeVariants}
-          className="flex flex-col sm:flex-row gap-8 justify-center mt-10"
+          className="flex flex-col sm:flex-row gap-8 justify-center mt-10 pointer-events-auto"
         >
           {/* Primary — Liquid Glass Gold */}
           <LiquidButton
@@ -144,6 +145,15 @@ export default function Hero() {
           >
             <span className="font-sans font-bold tracking-[0.2em] uppercase text-sm text-white/80">Visit Store</span>
           </LiquidButton>
+        </motion.div>
+
+        {/* Interaction Hint */}
+        <motion.div 
+          variants={fadeVariants}
+          className="absolute -bottom-24 flex flex-col items-center gap-2 text-white/40 animate-pulse pointer-events-none"
+        >
+          <MousePointer2 className="w-5 h-5 text-gold/60" />
+          <span className="text-[10px] uppercase tracking-widest font-sans">Move cursor & Click</span>
         </motion.div>
       </motion.div>
 
