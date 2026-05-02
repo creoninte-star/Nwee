@@ -51,22 +51,22 @@ export default function Services() {
         <motion.div 
           animate={{ 
             scale: [1, 1.2, 1],
-            opacity: [0.1, 0.15, 0.1],
+            opacity: [0.15, 0.25, 0.15],
             x: [0, 50, 0],
             y: [0, 30, 0]
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-gold/20 rounded-full blur-[120px]"
+          className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-gold/20 rounded-full blur-[120px]"
         />
         <motion.div 
           animate={{ 
             scale: [1, 1.3, 1],
-            opacity: [0.05, 0.1, 0.05],
+            opacity: [0.1, 0.2, 0.1],
             x: [0, -40, 0],
             y: [0, -60, 0]
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute bottom-0 -right-20 w-[600px] h-[600px] bg-gold/10 rounded-full blur-[150px]"
+          className="absolute bottom-10 -right-20 w-[700px] h-[700px] bg-teal/20 rounded-full blur-[150px]"
         />
 
         {/* Technical Dot Grid */}
@@ -93,7 +93,13 @@ export default function Services() {
           <div className="overflow-hidden">
             <motion.h2
               variants={{ hidden: { y: "100%", opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const } } }}
-              className="text-5xl md:text-7xl font-display font-black tracking-tight text-text mb-6"
+              className="text-5xl md:text-7xl font-display font-black tracking-tight mb-6"
+              style={{
+                background: "linear-gradient(160deg, #FFFFFF 0%, #F5E6A0 40%, #D4AF37 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
               Services
             </motion.h2>
@@ -116,11 +122,13 @@ export default function Services() {
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.2 }}
                 onClick={() => setSelectedService(service.id)}
-                className="relative bg-white/[0.02] backdrop-blur-lg cursor-pointer border border-white/[0.05] rounded-3xl px-8 py-12 flex flex-col justify-between group hover:border-gold/30 hover:bg-white/[0.04] transition-all duration-500 overflow-hidden shadow-2xl"
-                whileHover={{ scale: 1.02, y: -5 }}
+                className="relative bg-white/[0.01] backdrop-blur-lg cursor-pointer border border-white/[0.04] rounded-3xl px-8 py-12 flex flex-col justify-between group hover:bg-white/[0.02] transition-all duration-700 overflow-hidden shadow-2xl"
+                whileHover={{ scale: 1.03, y: -8 }}
               >
-                {/* Premium subtle inner gradient glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                {/* Premium subtle inner gradient glow & border highlights */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                 <div className="text-text/70 group-hover:text-gold transition-colors duration-500 mb-12 relative z-10">
                   <Icon size={44} strokeWidth={1.5} />
