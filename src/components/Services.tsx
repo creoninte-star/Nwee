@@ -24,29 +24,52 @@ export default function Services() {
     offset: ["start start", "end end"]
   });
 
-  // Calculate dynamic transforms for each card based on scroll progress
-  const getCardTransforms = (i: number) => {
-    // Phase 1: Exploded view coordinates (vw/vh for responsiveness)
-    const explodeX = ["-35vw", "35vw", "-35vw", "35vw", "0vw"][i];
-    const explodeY = ["-25vh", "-25vh", "25vh", "25vh", "35vh"][i];
-    const explodeR = [-15, 15, 10, -10, 5][i];
+function ServiceCard({ service, i, scrollYProgress, setSelectedService }: any) {
+  const Icon = service.icon;
 
-    // Phase 2: Locked fan coordinates
-    const fanX = `${(i - 2) * 50}px`;
-    const fanY = `${Math.abs(i - 2) * 15}px`;
-    const fanR = (i - 2) * 8;
+  // Phase 1: Exploded view coordinates (vw/vh for responsiveness)
+  const explodeX = ["-35vw", "35vw", "-35vw", "35vw", "0vw"][i];
+  const explodeY = ["-25vh", "-25vh", "25vh", "25vh", "35vh"][i];
+  const explodeR = [-15, 15, 10, -10, 5][i];
 
-    const x = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vw", "0vw", explodeX, explodeX, fanX, fanX]);
-    const y = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vh", "0vh", explodeY, explodeY, fanY, fanY]);
-    const rotate = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], [0, 0, explodeR, explodeR, fanR, fanR]);
-    const scale = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], [0.5, 0.5, 1, 1, 1, 1]);
-    const opacity = useTransform(scrollYProgress, [0, 0.15, 0.3, 0.65, 0.85, 1], [0, 0, 1, 1, 1, 1]);
-    
-    // As they lock into the fan, stack them nicely
-    const zIndex = 10 + i;
+  // Phase 2: Locked fan coordinates
+  const fanX = `${(i - 2) * 50}px`;
+  const fanY = `${Math.abs(i - 2) * 15}px`;
+  const fanR = (i - 2) * 8;
 
-    return { x, y, rotate, scale, opacity, zIndex };
-  };
+  const x = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vw", "0vw", explodeX, explodeX, fanX, fanX]);
+  const y = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], ["0vh", "0vh", explodeY, explodeY, fanY, fanY]);
+  const rotate = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], [0, 0, explodeR, explodeR, fanR, fanR]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.65, 0.85, 1], [0.5, 0.5, 1, 1, 1, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.3, 0.65, 0.85, 1], [0, 0, 1, 1, 1, 1]);
+  
+  // As they lock into the fan, stack them nicely
+  const zIndex = 10 + i;
+
+  return (
+    <motion.div
+      style={{ x, y, rotate, scale, opacity, zIndex }}
+      onClick={() => setSelectedService(service.id)}
+      className="absolute w-[280px] sm:w-[320px] bg-[#0c0c0c]/80 backdrop-blur-2xl cursor-pointer border border-white/[0.08] rounded-3xl p-8 flex flex-col group hover:bg-[#111] transition-colors duration-500 overflow-hidden shadow-2xl pointer-events-auto"
+      whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
+    >
+      {/* Premium subtle inner gradient glow & border highlights */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+      <div className="text-text/70 group-hover:text-gold transition-colors duration-500 mb-8 relative z-10 flex justify-center">
+        <div className="p-4 rounded-full bg-white/5 group-hover:bg-gold/10 transition-colors duration-500">
+          <Icon size={40} strokeWidth={1.5} />
+        </div>
+      </div>
+      <div className="relative z-10 text-center">
+        <h3 className="text-xl font-sans font-medium tracking-wide text-white mb-3 uppercase group-hover:scale-105 transition-transform duration-300">{service.title}</h3>
+        <p className="text-text-muted font-sans text-xs leading-relaxed group-hover:text-white/80 transition-colors duration-300">{service.desc}</p>
+      </div>
+    </motion.div>
+  );
+}
 
   // Central Core Mockup Transforms
   const coreScale = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.85, 1], [0.8, 1, 1, 1, 0.8, 0.8]);
@@ -134,42 +157,15 @@ export default function Services() {
 
         {/* Exploding Service Cards */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          {services.map((service, i) => {
-            const Icon = service.icon;
-            const transforms = getCardTransforms(i);
-
-            return (
-              <motion.div
-                key={service.id}
-                style={{
-                  x: transforms.x,
-                  y: transforms.y,
-                  rotate: transforms.rotate,
-                  scale: transforms.scale,
-                  opacity: transforms.opacity,
-                  zIndex: transforms.zIndex,
-                }}
-                onClick={() => setSelectedService(service.id)}
-                className="absolute w-[280px] sm:w-[320px] bg-[#0c0c0c]/80 backdrop-blur-2xl cursor-pointer border border-white/[0.08] rounded-3xl p-8 flex flex-col group hover:bg-[#111] transition-colors duration-500 overflow-hidden shadow-2xl pointer-events-auto"
-                whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
-              >
-                {/* Premium subtle inner gradient glow & border highlights */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-teal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                <div className="text-text/70 group-hover:text-gold transition-colors duration-500 mb-8 relative z-10 flex justify-center">
-                  <div className="p-4 rounded-full bg-white/5 group-hover:bg-gold/10 transition-colors duration-500">
-                    <Icon size={40} strokeWidth={1.5} />
-                  </div>
-                </div>
-                <div className="relative z-10 text-center">
-                  <h3 className="text-xl font-sans font-medium tracking-wide text-white mb-3 uppercase group-hover:scale-105 transition-transform duration-300">{service.title}</h3>
-                  <p className="text-text-muted font-sans text-xs leading-relaxed group-hover:text-white/80 transition-colors duration-300">{service.desc}</p>
-                </div>
-              </motion.div>
-            );
-          })}
+          {services.map((service, i) => (
+            <ServiceCard 
+              key={service.id} 
+              service={service} 
+              i={i} 
+              scrollYProgress={scrollYProgress} 
+              setSelectedService={setSelectedService} 
+            />
+          ))}
         </div>
       </div>
 
