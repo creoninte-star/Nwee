@@ -63,7 +63,7 @@ function ServiceCard({ service, i, scrollYProgress, setSelectedService, isMobile
     <motion.div
       style={{ x, y, rotate, scale, opacity, zIndex }}
       onClick={() => setSelectedService(service.id)}
-      className="absolute w-[280px] sm:w-[320px] bg-gradient-to-b from-[#1a1708]/90 to-[#0c0c0c]/90 backdrop-blur-2xl cursor-pointer border border-gold/40 rounded-3xl p-8 flex flex-col group hover:from-[#26200a]/90 hover:to-[#111]/90 hover:border-gold/60 transition-all duration-500 overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.15)] pointer-events-auto"
+      className="absolute w-[280px] sm:w-[320px] bg-gradient-to-b from-[#1a1708]/90 to-[#0c0c0c]/90 backdrop-blur-2xl cursor-pointer border border-gold/40 rounded-3xl p-8 flex flex-col group hover:from-[#26200a]/90 hover:to-[#111]/90 hover:border-gold/60 transition-all duration-500 overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.15)] pointer-events-auto will-change-transform transform-gpu"
       whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.3 } }}
     >
       {/* Premium subtle inner gradient glow & border highlights */}
@@ -86,7 +86,7 @@ function ServiceCard({ service, i, scrollYProgress, setSelectedService, isMobile
 
   // Central Core Mockup Transforms
   const coreScale = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.85, 1], [0.8, 1, 1, 1, 0.8, 0.8]);
-  const coreOpacity = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.8, 1], isMobile ? [0, 1, 0.5, 0, 0, 0] : [0, 1, 1, 1, 0, 0]);
+  const coreOpacity = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.85, 1], isMobile ? [0, 1, 0.5, 0, 0, 0] : [0, 1, 1, 0.5, 0, 0]);
   const coreY = useTransform(scrollYProgress, [0, 0.1, 0.45, 0.65, 0.85, 1], ["50px", "0px", "0px", "0px", "-50px", "-50px"]);
 
   // Scroll Hint Text
