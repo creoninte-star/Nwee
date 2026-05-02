@@ -4,8 +4,8 @@ import { motion, Variants } from "framer-motion";
 
 const projects = [
   { id: 1, title: "Nexus Rebrand", category: "Brand Identity", img: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&q=80", height: "md:col-span-2 md:row-span-2 h-[400px] md:h-[600px]" },
-  { id: 2, title: "Aura E-Commerce", category: "Web Development", img: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&q=80", height: "md:col-span-1 md:row-span-1 h-[300px]" },
-  { id: 3, title: "Phantom Visual Identity", category: "Graphic Design", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80", height: "md:col-span-1 md:row-span-1 h-[300px]" },
+  { id: 2, title: "Aflah & Nihana Wedding", category: "Web Development", img: "/images/wedding_invitation_thumb.png", height: "md:col-span-1 md:row-span-1 h-[300px]", link: "https://wedding-invitation-aflah-nihana.vercel.app" },
+  { id: 3, title: "Rafeel & Rizwan Wedding", category: "Web Development", img: "/images/wedding_invitation_thumb.png", height: "md:col-span-1 md:row-span-1 h-[300px]", link: "https://wedding-invitation-rafeel-rizwan.vercel.app/" },
   { id: 4, title: "Velocity Campaign", category: "Video Editing", img: "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&q=80", height: "md:col-span-1 md:row-span-2 h-[450px] md:h-full" },
   { id: 5, title: "Echo Festival", category: "Brand Identity", img: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80", height: "md:col-span-2 md:row-span-1 h-[350px]" },
   { id: 6, title: "Noir Social Campaign", category: "Ad & Social Branding", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80", height: "md:col-span-1 md:row-span-1 h-[350px]" },
@@ -60,6 +60,7 @@ export default function Work() {
             <motion.div 
               key={project.id} 
               className={`relative overflow-hidden group cursor-pointer rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-gold/30 transition-all duration-500 shadow-2xl ${project.height}`}
+              onClick={() => project.link && window.open(project.link, "_blank")}
               custom={i}
               variants={cardVariants}
               initial="hidden"
