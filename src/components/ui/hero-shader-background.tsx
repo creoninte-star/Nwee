@@ -73,9 +73,9 @@ export default function HeroShaderBackground({
     resize();
 
     // ── Spotlight definitions ─────────────────────────────────────────────
-    // 4 layers: primary gold | amber shadow | champagne accent | deep teal
+    // 4 layers: primary navy | amber shadow | champagne accent | deep navy-light
     const spots: Spot[] = [
-      // 0 — Primary warm gold, upper-center dominant beam
+      // 0 — Primary warm navy, upper-center dominant beam
       {
         phaseX: 0,    phaseY: 0.6,
         freqX: 0.00058, freqY: 0.00044,
@@ -99,7 +99,7 @@ export default function HeroShaderBackground({
         rangeX: 0.08,  rangeY: 0.06,
         r: 238, g: 218, b: 158, alpha: 0.20, radius: 0.60,
       },
-      // 3 — Deep teal, lower-right for shadow depth richness
+      // 3 — Deep navy-light, lower-right for shadow depth richness
       {
         phaseX: 1.3,  phaseY: 3.5,
         freqX: 0.00034, freqY: 0.00049,

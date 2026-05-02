@@ -92,7 +92,7 @@ export const Card = ({
           "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
         transformOrigin: "top center",
       }}
-      className="w-full h-full md:rounded-[40px] overflow-hidden relative shadow-[0_0_100px_rgba(212,175,55,0.05)] border-x border-b border-transparent origin-top will-change-transform"
+      className="w-full h-full md:rounded-[40px] overflow-hidden relative shadow-[0_0_100px_rgba(10,35,66,0.05)] border-x border-b border-transparent origin-top will-change-transform"
     >
       <div className="h-full w-full bg-background overflow-hidden relative">
         {children}

@@ -42,13 +42,13 @@ export default function Work() {
             </div>
             <motion.div
               variants={{ hidden: { width: 0 }, visible: { width: 64, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const } } }}
-              className="h-[2px] bg-gold"
+              className="h-[2px] bg-navy"
             />
           </div>
           <motion.a
             variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.6 } } }}
             href="#"
-            className="uppercase tracking-[0.2em] text-sm font-sans text-gold hover:text-teal transition-colors border-b border-gold hover:border-teal pb-1"
+            className="uppercase tracking-[0.2em] text-sm font-sans text-navy hover:text-navy-light transition-colors border-b border-navy hover:border-navy-light pb-1"
           >
             View Archive
           </motion.a>
@@ -59,7 +59,7 @@ export default function Work() {
           {projects.map((project, i) => (
             <motion.div 
               key={project.id} 
-              className={`relative overflow-hidden group cursor-pointer rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-gold/30 transition-all duration-500 shadow-2xl ${project.height}`}
+              className={`relative overflow-hidden group cursor-pointer rounded-2xl bg-white/[0.02] border border-navy/[0.06] hover:border-navy/30 transition-all duration-500 shadow-2xl ${project.height}`}
               onClick={() => project.link && window.open(project.link, "_blank")}
               custom={i}
               variants={cardVariants}
@@ -78,15 +78,15 @@ export default function Work() {
               <div className="absolute inset-0 bg-background/20 group-hover:bg-background/10 transition-colors duration-700"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-70 group-hover:opacity-60 transition-opacity"></div>
               {/* Gold glow on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gold/0 to-gold/0 group-hover:from-gold/5 group-hover:to-transparent transition-all duration-700 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-navy/0 to-navy/0 group-hover:from-navy/5 group-hover:to-transparent transition-all duration-700 pointer-events-none" />
               
               {/* Content */}
               <div className="absolute bottom-0 left-0 w-full p-8 md:p-10 flex flex-col justify-end h-full">
                 <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                  <div className="text-gold text-xs font-sans uppercase tracking-[0.2em] mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                  <div className="text-navy text-xs font-sans uppercase tracking-[0.2em] mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                     {project.category}
                   </div>
-                  <h3 className="text-2xl md:text-4xl font-display font-black text-white uppercase tracking-tight">{project.title}</h3>
+                  <h3 className="text-2xl md:text-4xl font-display font-black text-navy uppercase tracking-tight">{project.title}</h3>
                 </div>
               </div>
             </motion.div>

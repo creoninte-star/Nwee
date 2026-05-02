@@ -83,14 +83,14 @@ export default function Process() {
             initial={{ width: 0 }}
             whileInView={{ width: 64 }}
             viewport={{ once: true }}
-            className="h-[2px] bg-gold mx-auto"
+            className="h-[2px] bg-navy mx-auto"
           ></motion.div>
         </div>
 
         <div className="relative mt-24">
           {/* Main timeline line (Static background line) */}
-          <div className="hidden md:block absolute top-[4.5rem] left-0 w-full h-[1px] bg-white/5"></div>
-          <div className="md:hidden absolute left-1/2 top-16 bottom-16 w-[1px] bg-white/5 -translate-x-1/2"></div>
+          <div className="hidden md:block absolute top-[4.5rem] left-0 w-full h-[1px] bg-navy/5"></div>
+          <div className="md:hidden absolute left-1/2 top-16 bottom-16 w-[1px] bg-navy/5 -translate-x-1/2"></div>
           
           <div className="flex flex-col md:flex-row justify-between relative z-10">
             {steps.map((step, i) => (
@@ -108,12 +108,12 @@ export default function Process() {
                     <motion.div 
                       variants={lineVariants}
                       custom={i}
-                      className="hidden md:block absolute top-[4.5rem] left-1/2 w-full h-[2px] bg-gold origin-left z-0"
+                      className="hidden md:block absolute top-[4.5rem] left-1/2 w-full h-[2px] bg-navy origin-left z-0"
                     ></motion.div>
                     <motion.div 
                       variants={lineVariants}
                       custom={i}
-                      className="md:hidden absolute left-1/2 top-32 w-[2px] h-[calc(100%+1rem)] bg-gold origin-top -translate-x-1/2 z-0"
+                      className="md:hidden absolute left-1/2 top-32 w-[2px] h-[calc(100%+1rem)] bg-navy origin-top -translate-x-1/2 z-0"
                     ></motion.div>
                   </>
                 )}
@@ -133,14 +133,14 @@ export default function Process() {
                   </motion.span>
                   
                   {/* Subtle inner glow */}
-                  <div className="absolute inset-0 rounded-full bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 rounded-full bg-navy/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </motion.div>
 
                 <motion.div variants={textVariants} custom={i}>
-                  <h3 className="text-2xl font-bebas mb-4 uppercase text-white tracking-wider group-hover:text-gold transition-colors duration-500">
+                  <h3 className="text-2xl font-bebas mb-4 uppercase text-navy tracking-wider group-hover:text-navy transition-colors duration-500">
                     {step.title}
                   </h3>
-                  <p className="text-white/60 group-hover:text-white/90 font-sans text-sm md:text-base max-w-[16rem] mx-auto text-left md:text-center leading-relaxed transition-colors duration-500">
+                  <p className="text-navy/60 group-hover:text-navy/90 font-sans text-sm md:text-base max-w-[16rem] mx-auto text-left md:text-center leading-relaxed transition-colors duration-500">
                     {step.desc}
                   </p>
                 </motion.div>

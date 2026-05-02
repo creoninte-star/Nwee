@@ -45,7 +45,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
           <>
             {/* Gold leading curtain */}
             <motion.div
-              key="curtain-gold"
+              key="curtain-navy"
               className="fixed inset-0 z-[9998] pointer-events-none"
               style={{
                 background: "linear-gradient(135deg, #0A0A0A 0%, #1a1100 50%, #0A0A0A 100%)",

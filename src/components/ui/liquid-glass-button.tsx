@@ -65,7 +65,7 @@ const liquidbuttonVariants = cva(
       variant: {
         default: "bg-transparent hover:scale-105 duration-300 transition text-primary",
         destructive:
-          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
+          "bg-destructive text-navy hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         secondary:
@@ -181,7 +181,7 @@ type ColorVariant =
   | "primary"
   | "success"
   | "error"
-  | "gold"
+  | "navy"
   | "bronze";
  
 interface MetalButtonProps
@@ -203,14 +203,14 @@ const colorVariants: Record<
     outer: "bg-gradient-to-b from-[#000] to-[#A0A0A0]",
     inner: "bg-gradient-to-b from-[#FAFAFA] via-[#3E3E3E] to-[#E5E5E5]",
     button: "bg-gradient-to-b from-[#B9B9B9] to-[#969696]",
-    textColor: "text-white",
+    textColor: "text-navy",
     textShadow: "[text-shadow:_0_-1px_0_rgb(80_80_80_/_100%)]",
   },
   primary: {
     outer: "bg-gradient-to-b from-[#000] to-[#A0A0A0]",
     inner: "bg-gradient-to-b from-primary via-secondary to-muted",
     button: "bg-gradient-to-b from-primary to-primary/40",
-    textColor: "text-white",
+    textColor: "text-navy",
     textShadow: "[text-shadow:_0_-1px_0_rgb(30_58_138_/_100%)]",
   },
   success: {
@@ -227,7 +227,7 @@ const colorVariants: Record<
     textColor: "text-[#FFF7F0]",
     textShadow: "[text-shadow:_0_-1px_0_rgb(146_64_14_/_100%)]",
   },
-  gold: {
+  navy: {
     outer: "bg-gradient-to-b from-[#917100] to-[#EAD98F]",
     inner: "bg-gradient-to-b from-[#FFFDDD] via-[#856807] to-[#FFF1B3]",
     button: "bg-gradient-to-b from-[#FFEBA1] to-[#9B873F]",

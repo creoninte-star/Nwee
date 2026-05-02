@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main id="main-wrapper" className="relative bg-background text-text selection:bg-gold selection:text-background w-full overflow-clip origin-center will-change-transform">
+      <main id="main-wrapper" className="relative bg-background text-text selection:bg-navy selection:text-background w-full overflow-clip origin-center will-change-transform">
         <Hero />
         <Services />
         <Process />

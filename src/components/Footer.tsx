@@ -44,13 +44,13 @@ export default function Footer() {
                 variants={{ hidden: { y: "100%", opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const } } }}
                 className="text-6xl md:text-8xl font-display font-black tracking-tight text-text mb-6"
               >
-                LET'S <span className="text-gold">TALK.</span>
+                LET'S <span className="text-navy">TALK.</span>
               </motion.h2>
             </div>
             <motion.a
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}
               href="mailto:hello@nwee.agency"
-              className="text-xl md:text-2xl font-sans text-text-muted hover:text-gold transition-colors border-b border-transparent hover:border-gold pb-2 flex items-center gap-2 w-max"
+              className="text-xl md:text-2xl font-sans text-text-muted hover:text-navy transition-colors border-b border-transparent hover:border-navy pb-2 flex items-center gap-2 w-max"
             >
               hello@nwee.agency <ArrowUpRight size={24} />
             </motion.a>
@@ -60,7 +60,7 @@ export default function Footer() {
               <motion.a 
                 key={i} 
                 href="#" 
-                className="w-14 h-14 rounded-full border border-white/10 bg-white/[0.02] flex items-center justify-center text-text/70 hover:border-gold/40 hover:text-gold hover:bg-gold/5 transition-all duration-300"
+                className="w-14 h-14 rounded-full border border-navy/10 bg-white/[0.02] flex items-center justify-center text-text/70 hover:border-navy/40 hover:text-navy hover:bg-navy/5 transition-all duration-300"
                 whileHover={{ scale: 1.08, y: -3 }}
                 aria-label={icon.name}
               >
@@ -82,7 +82,7 @@ export default function Footer() {
           </div>
           <button 
             onClick={scrollToTop} 
-            className="text-gold text-sm font-sans uppercase tracking-widest hover:text-text transition-colors"
+            className="text-navy text-sm font-sans uppercase tracking-widest hover:text-text transition-colors"
           >
             Back to Top
           </button>

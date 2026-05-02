@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${manrope.variable} ${epilogue.variable} ${space.variable} ${bebas.variable}`}>
-      <body className="antialiased overflow-x-hidden selection:bg-gold selection:text-background font-sans bg-background text-text">
+      <body className="antialiased overflow-x-hidden selection:bg-navy selection:text-background font-sans bg-background text-text">
         <ScrollProgress />
         <SmoothScroll>
           <PageTransition>

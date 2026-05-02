@@ -60,7 +60,7 @@ export default function Hero() {
           top: "42%",
           height: "1px",
           background:
-            "linear-gradient(to right, transparent 0%, rgba(212,175,55,0.06) 20%, rgba(212,175,55,0.12) 50%, rgba(212,175,55,0.06) 80%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, rgba(10,35,66,0.06) 20%, rgba(10,35,66,0.12) 50%, rgba(10,35,66,0.06) 80%, transparent 100%)",
         }}
       />
 
@@ -76,17 +76,17 @@ export default function Hero() {
         <motion.div variants={fadeVariants} className="mb-10">
           <div className="relative group/badge inline-block">
             {/* Soft outer glow */}
-            <div className="absolute inset-0 rounded-full bg-gold/5 blur-[8px] opacity-0 group-hover/badge:opacity-100 transition-opacity duration-700" />
+            <div className="absolute inset-0 rounded-full bg-navy/5 blur-[8px] opacity-0 group-hover/badge:opacity-100 transition-opacity duration-700" />
             
             <span className="relative inline-flex items-center gap-3 px-6 py-2.5 rounded-full 
-              bg-white/[0.03] border border-white/10 backdrop-blur-xl
-              text-[9px] md:text-[10px] font-sans font-bold uppercase tracking-[0.45em] text-white/40
+              bg-white/[0.03] border border-navy/10 backdrop-blur-xl
+              text-[9px] md:text-[10px] font-sans font-bold uppercase tracking-[0.45em] text-navy/40
               shadow-[0_0_25px_rgba(0,0,0,0.3),inset_0_0_10px_rgba(255,255,255,0.02)]
-              transition-all duration-500 group-hover/badge:text-gold/70 group-hover/badge:border-gold/20
+              transition-all duration-500 group-hover/badge:text-navy/70 group-hover/badge:border-navy/20
               cursor-default">
               <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold/40 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-gold/60 shadow-[0_0_10px_rgba(212,175,55,0.5)]"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-navy/40 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-navy/60 shadow-[0_0_10px_rgba(10,35,66,0.5)]"></span>
               </span>
               Creative Agency
             </span>
@@ -104,7 +104,7 @@ export default function Hero() {
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              filter: "drop-shadow(0 0 60px rgba(212,175,55,0.12))",
+              filter: "drop-shadow(0 0 60px rgba(10,35,66,0.12))",
             }}
           >
             NWEE
@@ -114,7 +114,7 @@ export default function Hero() {
         {/* Tagline */}
         <motion.p
           variants={fadeVariants}
-          className="text-sm md:text-base text-white/50 max-w-lg font-sans tracking-[0.18em] font-light mb-14 uppercase"
+          className="text-sm md:text-base text-navy/50 max-w-lg font-sans tracking-[0.18em] font-light mb-14 uppercase"
         >
           Born Creative. Built to Scale.
         </motion.p>
@@ -130,10 +130,10 @@ export default function Hero() {
             className="px-12 py-5"
           >
             <div className="flex items-center gap-3">
-              <span className="font-sans font-bold tracking-[0.2em] uppercase text-sm text-gold">Work With Us</span>
+              <span className="font-sans font-bold tracking-[0.2em] uppercase text-sm text-navy">Work With Us</span>
               <ArrowRight
                 size={16}
-                className="text-gold opacity-70 group-hover:translate-x-1 transition-transform"
+                className="text-navy opacity-70 group-hover:translate-x-1 transition-transform"
               />
             </div>
           </LiquidButton>
@@ -143,16 +143,16 @@ export default function Hero() {
             onClick={() => window.open("https://shop.nwee.agency", "_blank")}
             className="px-12 py-5"
           >
-            <span className="font-sans font-bold tracking-[0.2em] uppercase text-sm text-white/80">Visit Store</span>
+            <span className="font-sans font-bold tracking-[0.2em] uppercase text-sm text-navy/80">Visit Store</span>
           </LiquidButton>
         </motion.div>
 
         {/* Interaction Hint */}
         <motion.div 
           variants={fadeVariants}
-          className="absolute -bottom-24 flex flex-col items-center gap-2 text-white/40 animate-pulse pointer-events-none"
+          className="absolute -bottom-24 flex flex-col items-center gap-2 text-navy/40 animate-pulse pointer-events-none"
         >
-          <MousePointer2 className="w-5 h-5 text-gold/60" />
+          <MousePointer2 className="w-5 h-5 text-navy/60" />
           <span className="text-[10px] uppercase tracking-widest font-sans">Move cursor & Click</span>
         </motion.div>
       </motion.div>
@@ -169,7 +169,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
       >
-        <span className="text-[9px] font-sans tracking-[0.35em] uppercase text-white/20">Scroll</span>
+        <span className="text-[9px] font-sans tracking-[0.35em] uppercase text-navy/20">Scroll</span>
         <motion.div
           className="w-px h-8 bg-gradient-to-b from-white/20 to-transparent"
           animate={{ scaleY: [0, 1, 0], opacity: [0, 1, 0] }}

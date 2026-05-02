@@ -9,14 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0A0A0A", // matte black
-        secondary: "#1A1A1A", // brushed steel gray
+        background: "#F4F4F6", // off-white
+        secondary: "#EAECEF", // slight contrast gray
         text: {
-          DEFAULT: "#FFFFFF", // pure white
-          muted: "#9CA3AF", // subtle gray
+          DEFAULT: "#343A40", // dark grey
+          muted: "#6C757D", // muted grey
         },
-        gold: "#D4AF37", // warm gold
-        teal: "#0F4C5C", // deep teal
+        navy: "#0A2342", // dark classic navy
+        "navy-light": "#2B4C7E", // faded navy accent
       },
       fontFamily: {
         sans: ["var(--font-manrope)", "sans-serif"],

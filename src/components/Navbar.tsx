@@ -92,7 +92,7 @@ export default function Navbar() {
         animate="visible"
       >
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-          <Link href="/" className="text-xl font-sans font-bold tracking-widest text-gold uppercase">
+          <Link href="/" className="text-xl font-sans font-bold tracking-widest text-navy uppercase">
             NWEE
           </Link>
 
@@ -110,12 +110,12 @@ export default function Navbar() {
                   className="relative text-xs font-sans uppercase tracking-[0.2em] transition-colors duration-300 group"
                   style={{ color: isActive ? "#D4AF37" : undefined }}
                 >
-                  <span className={isActive ? "text-gold" : "text-text group-hover:text-gold transition-colors duration-300"}>
+                  <span className={isActive ? "text-navy" : "text-text group-hover:text-navy transition-colors duration-300"}>
                     {link.name}
                   </span>
                   {/* Active underline */}
                   <motion.span
-                    className="absolute -bottom-1 left-0 h-[1px] bg-gold"
+                    className="absolute -bottom-1 left-0 h-[1px] bg-navy"
                     initial={{ width: 0 }}
                     animate={{ width: isActive ? "100%" : "0%" }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -127,7 +127,7 @@ export default function Navbar() {
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden text-gold z-50 relative"
+            className="md:hidden text-navy z-50 relative"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -155,7 +155,7 @@ export default function Navbar() {
                 <a
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-3xl font-sans font-light tracking-widest uppercase text-text hover:text-gold transition-colors"
+                  className="text-3xl font-sans font-light tracking-widest uppercase text-text hover:text-navy transition-colors"
                 >
                   {link.name}
                 </a>
