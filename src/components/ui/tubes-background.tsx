@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 // Helper for random colors within our brand palette
 const getRandomBrandColor = () => {
-  const brandColors = ["#D4AF37", "#F5E6A0", "#A07C18", "#0F4C5C", "#FFFFFF", "#6B5010"];
+  const brandColors = ["#0A2342", "#2B4C7E", "#343A40", "#2B4C7E", "#FFFFFF", "#6C757D"];
   return brandColors[Math.floor(Math.random() * brandColors.length)];
 };
 
@@ -46,10 +46,10 @@ export function TubesBackground({
 
         const app = TubesCursor(canvasRef.current, {
           tubes: {
-            colors: ["#F5E6A0", "#D4AF37", "#0F4C5C"], // Nwee Gold and Teal
+            colors: ["#2B4C7E", "#0A2342", "#2B4C7E"], // Nwee Gold and Teal
             lights: {
               intensity: 200,
-              colors: ["#D4AF37", "#FFFFFF", "#A07C18", "#0F4C5C"]
+              colors: ["#0A2342", "#FFFFFF", "#343A40", "#2B4C7E"]
             }
           }
         });

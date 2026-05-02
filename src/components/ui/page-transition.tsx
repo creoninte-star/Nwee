@@ -48,7 +48,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
               key="curtain-navy"
               className="fixed inset-0 z-[9998] pointer-events-none"
               style={{
-                background: "linear-gradient(135deg, #0A0A0A 0%, #1a1100 50%, #0A0A0A 100%)",
+                background: "linear-gradient(135deg, #F4F4F6 0%, #EAECEF 50%, #F4F4F6 100%)",
               }}
               initial={{ y: "100%" }}
               animate={{ y: "0%" }}
@@ -67,7 +67,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
               <span
                 className="text-5xl md:text-7xl font-display font-black tracking-[-0.01em]"
                 style={{
-                  background: "linear-gradient(160deg, #F5E6A0 0%, #D4AF37 40%, #A07C18 100%)",
+                  background: "linear-gradient(160deg, #2B4C7E 0%, #0A2342 40%, #001F3F 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",

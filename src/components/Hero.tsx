@@ -48,7 +48,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black">
+    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-background">
 
       {/* ── WebGL tubes interactive background ── */}
       <TubesBackground />
@@ -100,7 +100,7 @@ export default function Hero() {
             className="text-[5.5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] xl:text-[13rem] font-display font-black tracking-[-0.01em] leading-none"
             style={{
               background:
-                "linear-gradient(160deg, #F5E6A0 0%, #D4AF37 40%, #A07C18 75%, #6B5010 100%)",
+                "linear-gradient(160deg, #2B4C7E 0%, #0A2342 40%, #001F3F 75%, #343A40 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

@@ -11,14 +11,14 @@ const steps = [
 
 const circleVariants: Variants = {
   hidden: { 
-    borderColor: "rgba(255, 255, 255, 0.1)",
-    boxShadow: "0 0 0px rgba(212, 175, 55, 0)",
+    borderColor: "rgba(10, 35, 66, 0.1)",
+    boxShadow: "0 0 0px rgba(10, 35, 66, 0)",
     y: 20,
     opacity: 0
   },
   visible: (i: number) => ({
-    borderColor: "rgba(212, 175, 55, 0.5)",
-    boxShadow: "0 0 30px rgba(212, 175, 55, 0.2)",
+    borderColor: "rgba(10, 35, 66, 0.5)",
+    boxShadow: "0 0 30px rgba(10, 35, 66, 0.15)",
     y: 0,
     opacity: 1,
     transition: {
@@ -31,9 +31,9 @@ const circleVariants: Variants = {
 };
 
 const numVariants: Variants = {
-  hidden: { color: "rgba(255, 255, 255, 0.9)" },
+  hidden: { color: "rgba(10, 35, 66, 0.3)" },
   visible: (i: number) => ({
-    color: "rgba(212, 175, 55, 1)",
+    color: "rgba(10, 35, 66, 1)",
     transition: {
       delay: i * 1.2,
       duration: 0.5

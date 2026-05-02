@@ -108,7 +108,7 @@ export default function Navbar() {
                   rel={isExternal ? "noopener noreferrer" : undefined}
                   onClick={isExternal ? undefined : (e) => handleNavClick(e, link.href)}
                   className="relative text-xs font-sans uppercase tracking-[0.2em] transition-colors duration-300 group"
-                  style={{ color: isActive ? "#D4AF37" : undefined }}
+                  style={{ color: isActive ? "#0A2342" : undefined }}
                 >
                   <span className={isActive ? "text-navy" : "text-text group-hover:text-navy transition-colors duration-300"}>
                     {link.name}

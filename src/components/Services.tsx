@@ -146,7 +146,7 @@ function ServiceCard({ service, i, scrollYProgress, setSelectedService, isMobile
             className="absolute bottom-10 -right-20 w-[700px] h-[700px] bg-navy-light/20 rounded-full blur-[150px]"
           />
 
-          <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: "radial-gradient(circle, #D4AF37 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+          <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: "radial-gradient(circle, #0A2342 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
         </div>
 

@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: #0A0A0A;
+    --background: #F4F4F6;
     --foreground: #FFFFFF;
   }
 }
@@ -16,8 +16,8 @@ body {
 }
 
 ::selection {
-  background-color: #D4AF37;
-  color: #0A0A0A;
+  background-color: #0A2342;
+  color: #F4F4F6;
 }
 
 /* Hide default scrollbar for aesthetics */
@@ -25,10 +25,10 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0A0A0A;
+  background: #F4F4F6;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1A1A1A;
+  background: #EAECEF;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
